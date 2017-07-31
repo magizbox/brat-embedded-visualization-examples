@@ -1,93 +1,87 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Brat Embedding (minimal example)</title>
     <link rel="stylesheet" type="text/css" href="css/style-vis.css">
-    <script type="text/javascript" src="js/head.js"></script>
+
+    <style type="text/css">
+        @font-face {
+            font-family: "PT Sans Caption";
+            src: url("./fonts/PT_Sans-Caption-Web-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Liberation Sans";
+            src: url("./fonts/Liberation_Sans-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Astloch Bold";
+            src: url("./fonts/Astloch-Bold.ttf");
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- load all the libraries upfront, which takes forever. -->
-<script type="text/javascript" src="js/brat_loader.js"></script>
-
-This is how you'd configure a simple annotation (inside a &lt;script&gt; element):
-
-<pre>
-var collData = {
-    entity_types: [ {
-            type   : 'Person',
-            /* The labels are used when displaying the annotion, in this case
-                we also provide a short-hand "Per" for cases where
-                abbreviations are preferable */
-            labels : ['Person', 'Per'],
-            // Blue is a nice colour for a person?
-            bgColor: '#7fa2ff',
-            // Use a slightly darker version of the bgColor for the border
-            borderColor: 'darken'
-    } ]
-};
-</pre>
-
-<!-- let's do the configuration -->
-<script type="text/javascript">
-var collData = {
-    entity_types: [ {
-            type   : 'Person',
-            labels : ['Person', 'Per'],
-            bgColor: '#7fa2ff',
-            borderColor: 'darken'
-    } ]
-};
-</script>
-
-
-This is how a person annotation looks like:
-
-<pre>
-var docData = {
-    text     : "Ed O'Kelley was the man who shot the man who shot Jesse James.",
-    // The entities entry holds all entity annotations
-    entities : [
-        /* Format: [${ID}, ${TYPE}, [[${START}, ${END}]]]
-            note that range of the offsets are [${START},${END}) */
-        ['T1', 'Person', [[0, 11]]],
-        ['T2', 'Person', [[20, 23]]],
-        ['T3', 'Person', [[37, 40]]],
-        ['T4', 'Person', [[50, 61]]],
-    ],
-};
-</pre>
-
 <!-- we simply call it inside a script element -->
 <script type="text/javascript">
-var docData = {
-    text     : "Ed O'Kelley was the man who shot the man who shot Jesse James.",
-    entities : [
-        ['T1', 'Person', [[0, 11]]],
-        ['T2', 'Person', [[20, 23]]],
-        ['T3', 'Person', [[37, 40]]],
-        ['T4', 'Person', [[50, 61]]],
-    ],
-};
+    var format = {
+        entity_types: [
+            {
+                type: 'Token',
+                labels: [' '],
+                bgColor: '#eee',
+                borderColor: 'none'
+            },
+            {
+                type: 'NEG',
+                labels: ['NEG'],
+                bgColor: 'red',
+                borderColor: 'darken'
+            },
+        ],
+        "relation_types": [
+            {
+                "type": "nsubj",
+                labels: ['nsubj']
+            }
+        ]
+    };
+
+    var docData = {
+        text: "Ed O'Kelley was the gái who shot the man who shot Jesse James.",
+        entities: [
+            ['T1', 'Token', [[0, 11]]],
+            ['T2', 'NEG', [[20, 23]]],
+            ['T3', 'Token', [[37, 40]]],
+            ['T4', 'Token', [[50, 61]]]
+        ],
+        "relations": [
+            ["R1", "nsubj", [["arg1", "T2"], ["arg2", "T1"]]]
+        ]
+    };
 </script>
 
-<p>This is how brat visualizes the example (please wait several seconds until all javascript libraries are loaded):</p>
 
-<!-- the visualization will be embedded here. we'll just need to tell
-brat the div ID in a Util.embed() call-->
 <div id="embedding-entity-example"></div>
 
+<script src="js/client/lib/jquery.min.js"></script>
+<script src="js/client/lib/jquery.svg.min.js"></script>
+<script src="js/client/lib/jquery.svgdom.min.js"></script>
+<script src="js/client/src/configuration.js"></script>
+<script src="js/client/src/annotation_log.js"></script>
+<script src="js/client/lib/webfont.js"></script>
+<script src="js/client/src/dispatcher.js"></script>
+<script src="js/client/src/url_monitor.js"></script>
+<script src="js/client/src/visualizer.js"></script>
+<script src="js/client/src/util.js"></script>
 
 <script type="text/javascript">
-    head.ready(function() {
-        // Evaluate the code from the example (with ID
-        // 'embedding-entity-example') and show it to the user
-        Util.embed('embedding-entity-example', $.extend({}, collData),
-                $.extend({}, docData), webFontURLs);
-    });
+    Util.embed('embedding-entity-example', format, docData, []);
 </script>
 
 </body>

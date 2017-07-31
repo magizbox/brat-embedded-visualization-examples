@@ -607,9 +607,9 @@ var Util = (function(window, undefined) {
       fontNotifyList = [dispatcher];
 
       webFontURLs = webFontURLs || [
-        'static/fonts/Astloch-Bold.ttf',
-        'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
-        'static/fonts/Liberation_Sans-Regular.ttf'
+        // 'static/fonts/Astloch-Bold.ttf',
+        // 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        // 'static/fonts/Liberation_Sans-Regular.ttf'
       ];
 
       var families = [];
@@ -639,7 +639,8 @@ var Util = (function(window, undefined) {
       };
 
       WebFont.load(webFontConfig);
-
+        fontsLoaded = true;
+        fontLoadTimeout = 2;
       setTimeout(function() {
         if (!fontsLoaded) {
           console.error('Timeout in loading fonts');

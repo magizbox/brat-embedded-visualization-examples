@@ -17,8 +17,3 @@ head.js(
     bratLocation + '/client/src/visualizer.js'
 );
 
-var webFontURLs = [
-    bratLocation + '/static/fonts/Astloch-Bold.ttf',
-    bratLocation + '/static/fonts/PT_Sans-Caption-Web-Regular.ttf',
-    bratLocation + '/static/fonts/Liberation_Sans-Regular.ttf'
-];
