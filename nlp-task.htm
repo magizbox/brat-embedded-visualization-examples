@@ -7,7 +7,7 @@
     <title>Natural Language Processing</title>
     <link rel="stylesheet" type="text/css" href="css/style-vis.css">
     <link rel="stylesheet" type="text/css" href="css/ner.css">
-
+    <link rel="stylesheet" type="text/css" href="css/sa.css">
     <style type="text/css">
         @font-face {
             font-family: "PT Sans Caption";
@@ -25,64 +25,48 @@
         }
     </style>
 </head>
-
 <body>
-
-<!-- we simply call it inside a script element -->
-<script type="text/javascript">
-    var format = {
-        entity_types: [
-            {
-                type: 'Date',
-                labels: ['Date'],
-                bgColor: '#46cab2',
-                borderColor: 'darken'
-            },
-            {
-                type: 'Time',
-                labels: ['Date'],
-                bgColor: '#46cab2',
-                borderColor: 'darken'
-            },
-            {
-                type: 'Location',
-                labels: ['Location'],
-                bgColor: '#3DB4F8',
-                borderColor: 'darken'
-            },
-            {
-                type: 'Person',
-                labels: ['Person'],
-                bgColor: '#EEC467',
-                borderColor: 'darken'
-            }
-        ],
-        "relation_types": []
-    };
-
-    var docData = {
-        text: "At the W party Thursday night at Chateau Marmont, Cate Blanchett barely made it up in the elevator.",
-        entities: [
-            ['T1', 'Date', [[15, 23]]],
-            ['T2', 'Time', [[24, 29]]],
-            ['T3', 'Location', [[32, 46]]],
-            ['T4', 'Person', [[49, 62]]]
-        ]
-    };
-</script>
 
 
 <h1>NER</h1>
+<p>
+    <a style="font-size: 11px;" href="./css/ner.css" target="_blank">color theme</a>
+</p>
 
 <div>
     <span class="tag location">Location</span>
     <span class="tag person">Person</span>
     <span class="tag date">Date</span>
     <span class="tag time">Time</span>
-    <a style="font-size: 11px;" href="./css/ner.css">color theme</a>
 </div>
 <br/>
-<div id="ner-1"></div>
+<div id="ner1"></div>
+
+<h1>Sentiment Analysis</h1>
+<p>
+    <a style="font-size: 11px;" target="_blank" href="./css/sa.css">color theme</a>,
+    <a style="font-size: 11px;" target="_blank" href="http://alt.qcri.org/semeval2016/task5/">SemEval-2016 Task 5:
+        Aspect-Based Sentiment Analysis</a>
+</p>
+<div>
+    <span class="tag sa-entity">Entity</span>
+    <span class="tag sa-attribute">Attribute</span>
+    <span class="tag sa-pos">POS</span>
+    <span class="tag sa-neg">NEG</span>
+</div>
+<br/>
+<div id="sa1"></div>
+<br/>
+<div id="sa2"></div>
+<br/>
+<div id="sa3"></div>
+
+
+<script src="js/data/data.js"></script>
+<script src="js/data/ner.js"></script>
+<script src="js/data/sa1.js"></script>
+<script src="js/data/sa2.js"></script>
+<script src="js/data/sa3.js"></script>
 
 <script src="js/client/lib/jquery.min.js"></script>
 <script src="js/client/lib/jquery.svg.min.js"></script>
@@ -94,10 +78,6 @@
 <script src="js/client/src/url_monitor.js"></script>
 <script src="js/client/src/visualizer.js"></script>
 <script src="js/client/src/util.js"></script>
-
-<script type="text/javascript">
-    Util.embed('ner-1', format, docData, []);
-</script>
-
+<script src="js/brat.js"></script>
 </body>
 </html>

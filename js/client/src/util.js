@@ -613,11 +613,11 @@ var Util = (function(window, undefined) {
       ];
 
       var families = [];
-      $.each(webFontURLs, function(urlNo, url) {
-        if (/Astloch/i.test(url)) families.push('Astloch');
-        else if (/PT.*Sans.*Caption/i.test(url)) families.push('PT Sans Caption');
-        else if (/Liberation.*Sans/i.test(url)) families.push('Liberation Sans');
-      });
+      // $.each(webFontURLs, function(urlNo, url) {
+      //   if (/Astloch/i.test(url)) families.push('Astloch');
+      //   else if (/PT.*Sans.*Caption/i.test(url)) families.push('PT Sans Caption');
+      //   else if (/Liberation.*Sans/i.test(url)) families.push('Liberation Sans');
+      // });
 
       webFontURLs = {
         families: families,
