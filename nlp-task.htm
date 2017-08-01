@@ -4,8 +4,9 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Brat Embedding (minimal example)</title>
+    <title>Natural Language Processing</title>
     <link rel="stylesheet" type="text/css" href="css/style-vis.css">
+    <link rel="stylesheet" type="text/css" href="css/ner.css">
 
     <style type="text/css">
         @font-face {
@@ -65,7 +66,7 @@
             ['T1', 'Date', [[15, 23]]],
             ['T2', 'Time', [[24, 29]]],
             ['T3', 'Location', [[32, 46]]],
-            ['T4', 'Person', [[49, 64]]],
+            ['T4', 'Person', [[49, 62]]]
         ]
     };
 </script>
@@ -73,7 +74,15 @@
 
 <h1>NER</h1>
 
-<div id="embedding-entity-example"></div>
+<div>
+    <span class="tag location">Location</span>
+    <span class="tag person">Person</span>
+    <span class="tag date">Date</span>
+    <span class="tag time">Time</span>
+    <a style="font-size: 11px;" href="./css/ner.css">color theme</a>
+</div>
+<br/>
+<div id="ner-1"></div>
 
 <script src="js/client/lib/jquery.min.js"></script>
 <script src="js/client/lib/jquery.svg.min.js"></script>
@@ -87,7 +96,7 @@
 <script src="js/client/src/util.js"></script>
 
 <script type="text/javascript">
-    Util.embed('embedding-entity-example', format, docData, []);
+    Util.embed('ner-1', format, docData, []);
 </script>
 
 </body>
